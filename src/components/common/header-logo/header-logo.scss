@@ -1,0 +1,17 @@
+@import "assets/variable";
+
+.header-logo {
+    background-color: $darkerblue;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    .header-icon {
+        font-size: 30px;
+        margin: 0.5rem;
+    }
+}
