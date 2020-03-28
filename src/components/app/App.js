@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route path="/Dash" component={Dash} />
+        <Route path="/" component={Dash} />
       </Switch>
     </div>
   );

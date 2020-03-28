@@ -12,15 +12,20 @@ import { Link } from "react-router-dom";
 
 const SideMenu = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [idToExpand, setIdToExpand] = useState(0);
+  const [idToExpandSub, setIdToExpandSub] = useState(0);
   const [toggleSubMenu, setToggleSubMenu] = useState(false);
   const [subMenuToToggle, setSubMenuToToggle] = useState(0);
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
 
-  const handleToggleSubMenu = () => {
+  const handleToggleSubMenu = event => {
     setToggleSubMenu(!toggleSubMenu);
+    setIdToExpand(event);
+    setIdToExpandSub(0);
   };
+
   return (
     <div className="side-menu-main">
       <HeaderLogo />
@@ -30,29 +35,34 @@ const SideMenu = () => {
           <>
             <ListItem
               className="menu-header"
-              onClick={handleToggleSubMenu}
+              onClick={() => handleToggleSubMenu(sideMenu.id)}
               button
               key={sideMenu.id}
             >
               <ListItemText primary={sideMenu.title} />
-              {toggleSubMenu ? <ExpandLess /> : <ExpandMore />}
+              {toggleSubMenu && sideMenu.subMenu ? (
+                <ExpandLess />
+              ) : !toggleSubMenu && sideMenu.subMenu ? (
+                <ExpandMore />
+              ) : null}
             </ListItem>
-            {sideMenu.subMenu.map(sub => (
-              <Collapse
-                key={sub.id}
-                in={toggleSubMenu}
-                timeout="auto"
-                unmountOnExit
-              >
-                <List component="div" disablePadding>
-                  <Link className="link" to={sub.link}>
-                    <ListItem button>
-                      <ListItemText primary={sub.title} />
-                    </ListItem>
-                  </Link>
-                </List>
-              </Collapse>
-            ))}
+            {sideMenu.subMenu &&
+              sideMenu.subMenu.map(sub => (
+                <Collapse
+                  key={sub.id}
+                  in={idToExpand === sideMenu.id && toggleSubMenu}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  <List component="div" disablePadding>
+                    <Link className="link" to={sub.link}>
+                      <ListItem button>
+                        <ListItemText primary={sub.title} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              ))}
           </>
         ))}
       </List>

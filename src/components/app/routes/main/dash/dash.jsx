@@ -3,7 +3,6 @@ import "./dash.scss";
 import SideMenu from "components/app/routes/partials/side-menu";
 import TopBar from "components/app/routes/partials/top-bar";
 import MainContent from "components/app/routes/partials/main-content";
-import NavBar from "components/app/routes/partials/nav-bar";
 
 const Dash = () => {
   return (
