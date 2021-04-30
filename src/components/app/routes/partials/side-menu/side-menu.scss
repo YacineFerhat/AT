@@ -14,12 +14,17 @@
         width: 100%;
 
         .menu-header {
-            justify-content: space-around;
-        }
+            width: 100%;
 
-        .link {
-            text-decoration: none;
-            color: white;
+
+            .menu-header {
+                justify-content: space-around;
+            }
+
+            .selected {
+                color: 'red'
+            }
+
         }
     }
 }

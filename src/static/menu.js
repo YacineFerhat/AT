@@ -2,27 +2,19 @@ export const Menu = [
   {
     id: 0,
     title: "Tableau de bord",
-    link: "/Admin/TableauDeBord",
-    state: "TBD"
+    link: "/",
+    state: "TBD",
+  },
+  {
+    id: 2,
+    title: "Clusters",
+    link: "/Clusters",
+    state: "Clusters",
   },
   {
     id: 1,
-    title: "Commentaires",
-    link: "/Admin/Commentaires",
-    state: "Commentaires",
-    subMenu: [
-      {
-        id: 0,
-        title: "Commentaires bruts",
-        state: "CommentairesBruts",
-        link: "/Admin/Commentaires/CommentairesBruts"
-      },
-      {
-        id: 1,
-        title: "Commentaires épurés ",
-        link: "/Admin/Commentaires/CommentairesEpuré",
-        state: "CommentairesEpuré"
-      }
-    ]
-  }
+    title: "Métriques",
+    link: "/Metriques",
+    state: "Metriques",
+  },
 ];

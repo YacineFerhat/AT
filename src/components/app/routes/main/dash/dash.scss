@@ -7,6 +7,13 @@
 
     .main-content {
         height: 100vh;
+        width: 100%;
         background-color: $light;
+    }
+}
+
+@media (max-width: $sm) {
+    .main-wrapper {
+        flex-direction: column;
     }
 }

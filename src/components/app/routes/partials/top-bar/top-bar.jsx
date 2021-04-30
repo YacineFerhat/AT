@@ -14,24 +14,24 @@ import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import PersonIcon from "@material-ui/icons/Person";
 import { MenuData } from "./top-bar";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   appBar: {
     backgroundColor: "#131b31",
     height: "40px",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   userName: {
-    margin: "1rem"
-  }
+    margin: "1rem",
+  },
 }));
 
 export default function TopBar() {
@@ -44,7 +44,7 @@ export default function TopBar() {
     setAnchorEl(null);
   };
 
-  const handleMenu = event => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
   return (
@@ -60,7 +60,7 @@ export default function TopBar() {
           >
             <AccountCircle />{" "}
             <Typography className={classes.userName} variant="overline">
-              Nom de l'utilisateur
+              Yacine Ferhat
             </Typography>
           </IconButton>
 
@@ -69,17 +69,17 @@ export default function TopBar() {
             anchorEl={anchorEl}
             anchorOrigin={{
               vertical: "top",
-              horizontal: "right"
+              horizontal: "right",
             }}
             keepMounted
             transformOrigin={{
               vertical: "top",
-              horizontal: "right"
+              horizontal: "right",
             }}
             open={open}
             onClose={handleClose}
           >
-            {MenuData.map(menu => (
+            {MenuData.map((menu) => (
               <MenuItem key={menu.id} onClick={handleClose}>
                 <ListItemIcon>
                   {menu.icon === "PersonIcon" ? (

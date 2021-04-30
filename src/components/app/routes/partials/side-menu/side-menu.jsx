@@ -8,19 +8,14 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import HeaderLogo from "components/common/header-logo";
 import { Menu } from "static/menu";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useRouteMatch } from "react-router-dom";
 
 const SideMenu = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
   const [idToExpand, setIdToExpand] = useState(0);
   const [idToExpandSub, setIdToExpandSub] = useState(0);
   const [toggleSubMenu, setToggleSubMenu] = useState(false);
-  const [subMenuToToggle, setSubMenuToToggle] = useState(0);
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-  };
-
-  const handleToggleSubMenu = event => {
+  let { path } = useRouteMatch();
+  const handleToggleSubMenu = (event) => {
     setToggleSubMenu(!toggleSubMenu);
     setIdToExpand(event);
     setIdToExpandSub(0);
@@ -31,7 +26,7 @@ const SideMenu = () => {
       <HeaderLogo />
 
       <List className="List" component="nav" aria-label="main mailbox folders">
-        {Menu.map(sideMenu => (
+        {Menu.map((sideMenu) => (
           <>
             <ListItem
               className="menu-header"
@@ -39,15 +34,29 @@ const SideMenu = () => {
               button
               key={sideMenu.id}
             >
-              <ListItemText primary={sideMenu.title} />
-              {toggleSubMenu && sideMenu.subMenu ? (
-                <ExpandLess />
-              ) : !toggleSubMenu && sideMenu.subMenu ? (
-                <ExpandMore />
-              ) : null}
+              <NavLink
+                style={{
+                  color: "white",
+                  display: "flex",
+                  textDecoration: "none",
+                  justifyContent: "space-between",
+                }}
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "#176fbd",
+                }}
+                to={`${path}${sideMenu.link}`}
+              >
+                <ListItemText primary={sideMenu.title} />
+                {toggleSubMenu && sideMenu.subMenu ? (
+                  <ExpandLess />
+                ) : !toggleSubMenu && sideMenu.subMenu ? (
+                  <ExpandMore />
+                ) : null}
+              </NavLink>
             </ListItem>
             {sideMenu.subMenu &&
-              sideMenu.subMenu.map(sub => (
+              sideMenu.subMenu.map((sub) => (
                 <Collapse
                   key={sub.id}
                   in={idToExpand === sideMenu.id && toggleSubMenu}
@@ -55,11 +64,21 @@ const SideMenu = () => {
                   unmountOnExit
                 >
                   <List component="div" disablePadding>
-                    <Link className="link" to={sub.link}>
+                    <NavLink
+                      style={{
+                        color: "white",
+                        textDecoration: "none",
+                      }}
+                      to={sub.link}
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#176fbd",
+                      }}
+                    >
                       <ListItem button>
                         <ListItemText primary={sub.title} />
-                      </ListItem>
-                    </Link>
+                      </ListItem>{" "}
+                    </NavLink>
                   </List>
                 </Collapse>
               ))}
@@ -69,10 +88,4 @@ const SideMenu = () => {
     </div>
   );
 };
-
 export default SideMenu;
-
-/*
-<div className="side-menu-main">
-      
-    </div>*/

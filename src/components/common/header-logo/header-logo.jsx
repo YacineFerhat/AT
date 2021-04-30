@@ -6,7 +6,7 @@ const HeaderLogo = () => {
   return (
     <div className="header-logo">
       <DashboardIcon className="header-icon" />
-      <span className="header-title">AT Dashboard</span>
+      <span className="header-title">Big data Analysis</span>
     </div>
   );
 };
